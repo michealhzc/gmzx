@@ -1,0 +1,43 @@
+
+app:
+
+界面： ajax  --
+  angularJs 
+
+后台数据：
+
+
+
+本地环境
+1. java环境：  java -version
+2. nodeJs 环境 安装node.js   node -v   npm
+3. eclipse集成 android开发环境  adt
+4. cordova    phonegap  --> cordova
+
+npm install -g cordova
+
+//进入某个项目目录  cordova命令
+cordova create myApp
+cd myApp
+cordova platform add android 
+cordova plug add XXX
+cordova build
+
+运行虚拟机
+在虚拟机上安装apk
+adb install /.../XXX.apk
+
+android:
+
+国内镜像： http://mirrors.neusoft.edu.cn
+
+配置android path:
+新建 ANDROID_HOME E:\adt-bundle-windows-x86_64\sdk\
+添加path:  %ANDROID_HOME%\platform-tools
+
+运行adb命令 
+
+adb devices // 显示所有能够连接的模拟器，如果有的话，则自动连接
+
+
+
