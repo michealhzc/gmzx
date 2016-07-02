@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="gmzxApp">
+    <head>
+        <title>广美整形</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <script type="text/javascript" src="js/angular/angular.min.js" charset="utf-8"></script>
+        <script>
+            var Gmzx = angular.module('gmzxApp',[]);
+            Gmzx.controller('index',['$scope','$http','$timeout',function($scope,$http,$timeout){
+                var timer = null;
+                $scope.data = [];
+                $scope.change = function(name){
+                    $timeout.cancel(timer);
+                    timer = $timeout(function(){
+                        $http({
+                            method : 'JSONP',
+                            url : 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+name+'&cb=JSON_CALLBACK'
+                        }).success(function(data){
+                            //console.log(data);
+                            $scope.data = data.s;
+                        });
+
+                    },500);
+
+                };
+
+
+
+
+
+            }]);
+
+        </script>
+    </head>
+    <body ng-controller="index" >
+	<h1>广美整形!</h1>
+    <input type="text" ng-model="name" ng-keyup="change(name)">
+    <input type="button" ng-click="change(name)" value="搜索">
+    <ul>
+        <li ng-repeat="d in data">{{d}}</li>
+    </ul>
+    </body>
+</html>
