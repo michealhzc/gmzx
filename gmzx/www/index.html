@@ -1,12 +1,207 @@
-<!DOCTYPE html>
-
+<!DOCTYPE HTML>
 <html>
-    <head>       
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=0.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+<meta content="yes" name="apple-mobile-web-app-capable"/>
+<meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+<meta name="format-detection" content="telephone=no" />
+<link href="css/index.css" rel="stylesheet" media="screen" type="text/css" />
+<script type="text/javascript" src="lib/angular/angular.min.js"></script>
+<script type="text/javascript" src="lib/angular/angular-route.js"></script>
+<script type="text/javascript" src="js/controller/indexcontroller.js"></script>
+<style>
+    body{background: #FFF;}
+    .tit{border-bottom: 1px #CCC solid;}
+    .list1 ul li{width: 48%;margin:1%;float: left;}
+    .list1 ul li img{width: 100%;}
+    .list ul li{height: 0.9rem;overflow: hidden;}
+    .list ul li .list_right,.list ul li .list_left{float: left;width: 45%;margin: 1% 2%;}
+    .list1 ul li .red,.list ul li .red{color:red; height: 0.2rem;line-height: 0.2rem;}
+    .list1 ul li .list_cart,.list ul li .list_cart{display: inline-block;    cursor: pointer;float: right;background: url(http://static.gmzx.com/images/microMall/index/list_cart.png) no-repeat center;background-size: 80%; height: 0.2rem;line-height: 0.2rem;width: 0.3rem}
+</style>
+<script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<script>
+    var elm = document.documentElement;
+    var fontSize = 100;
+    if(elm.clientWidth<720||elm.clientWidth==720){
+        elm.style.fontSize = fontSize * (elm.clientWidth/320) + 'px';
+    }else{elm.style.fontSize = fontSize * (720/320) + 'px';}
+</script>
+</head>
 
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <title>Hello World</title>
-    </head>
-    <body>
-	<h1>hello world222!</h1>
-    </body>
+<body>
+<!-- 头部 -->
+<header id="header">
+    <a href=""><span class="logo"><h2>广美整形</h2></span></a>
+    <div class="txtMarquee-left">
+        <div class="bd">
+            <ul class="infoList">
+                <li title="广美整形"></li>
+            </ul>
+        </div>
+    </div>
+    <div class="ma-right"><span class="right"></span></div>
+    <div class="menu">
+        <li><a href="">首页</a></li>
+        <li><a href="#nose">美鼻</a></li>
+        <li><a href="#gmboniaoshuan">玻尿酸</a></li>
+        <li><a href="#quban">祛斑</a></li>
+        <li><a href="#PERKshuangyanpi">眼部</a></li>
+        <li><a href="#face">美脸</a></li>
+    </div>
+</header>
+<div class="banner">
+
+    <a href="zhuanTi_show/microPlasticGongYiXing"><img src="http://static.gmzx.com/images/public/phoneBanner/gongyixing.jpg" alt="广州广美整形美容医院 微整形公益行" /></a>
+</div>
+<!-- Add Pagination -->
+
+<!-- main-->
+<!-- main end -->
+
+<div class="both"></div>
+<footer id="footer">
+    <div class="foot_nav widf">
+        <div class="nav_menu" id="nav_menu">
+            <ul>
+                <li><a class="nav_zhuanjia" title="来院路线" href="<%=basePath%>article_show/ditu">来院路线</a></li>
+                <li><a class="nav_zhuanjia" title="整形案例" href="<%=basePath%>anli_showList">整形案例</a></li>
+                <li><a class="nav_zhuanjia" title="专家团队" href="<%=basePath%>doctor_showList">专家团队</a></li>
+                <li><a class="nav_pinpai" title="广美品牌" href="<%=basePath%>catalog_show/pinpai">广美品牌</a></li>
+            </ul>
+        </div>
+        <ul class="foot-ul">
+            <li>
+                <a href="zhuanTi_show/zhuanTiZhongXin">
+                    <div class="foot_pic pr">
+                        <img src="http://static.gmzx.com/images/phone/common/all_item.png" alt="">
+                    </div>
+                    <span>全部项目</span>
+                </a>
+            </li>
+            <li>
+                <a onclick="openZoosUrl();LR_HideInvite();return false;" rel="nofollow" href="javascript:void(0)" >
+                    <div class="foot_pic pr">
+                        <img  src="http://static.gmzx.com/images/phone/common/foot_zixun.png" alt="">
+                        <em class="swt_num  foot_pic_now pa">2</em>
+                    </div>
+                    <span>购物车</span>
+                </a>
+            </li>
+            <li>
+                <a href="<%=basePath%>zhuanTi_show/201651">
+                    <div class="foot_pic pr">
+                        <img src="http://static.gmzx.com/images/phone/common/foot_youhui.png" alt="">
+                    </div>
+                    <span>优惠</span>
+                </a>
+            </li>
+            <li id="nav_menu_bnt">
+                <a href="javascript:void(0)" rel="nofollow" >
+                    <div class="foot_pic pr">
+                        <img src="http://static.gmzx.com/images/phone/common/foot_about.png" alt="">
+                    </div>
+                    <span>个人中心</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="returnTop" id="returnTop"></div>
+</footer>
+</body>
+<script type="text/javascript" src="lib/jquery.SuperSlide.2.1.1.js"></script>
+<script>
+    /*头部下拉*/
+    var top_btn=$("#header span.right");
+    top_btn.on("click",function(e){
+        e.stopPropagation();
+        var val = $(this).attr('class');
+        if(val.indexOf('on') == -1){
+            $(this).addClass('on');
+            $(".menu").show(0).stop().animate({
+                height:'1.86rem'
+            },0);
+            $(".menu").attr('id',"topmenu");//加入id属性
+            top_btn.attr('id',"top_btn");//加入id属性
+        }else{
+            $(this).removeClass('on');
+            $(".menu").hide(0).stop().animate({
+                height:'0'
+            },0);
+        }
+    })
+    //点击按钮列表收缩
+    $('.menu a').on('click',function(e){
+        e.stopPropagation();
+        $(this).parents('.menu').hide();
+        $('#header span.right').removeClass('on');
+    })
+
+
+    $('#nav_menu_bnt').on('click',function(e){
+        e.stopPropagation(); //防止事件冒泡，触发body的click事件
+        $('#nav_menu').toggle();
+    })
+    /*脚部头部下拉*/
+
+    //触摸别的地方列表收缩
+    $('body').on('click touchmove',function(bnt) {
+        if(bnt.target.id != 'top_btn' && bnt.target.id != 'topmenu'){
+            top_btn.removeClass('on');
+            if ( $('#topmenu').is(':visible') ) $('#topmenu').hide();
+            bnt.stopPropagation();
+        }
+        if(bnt.target.id != 'nav_menu_bnt' && bnt.target.id != 'nav_menu'){
+            if ( $('#nav_menu').is(':visible') ) $('#nav_menu').hide();
+        }
+    })
+
+    var body_width = $('body').width();
+    if (body_width > 720) {
+        $('body').width(720).css('margin', '0 auto')
+    }
+
+    jQuery(".order").slide({ mainCell:".bd ul",effect:"fade",trigger:"click"});
+
+    //加入购物车动画效果
+
+
+    $('.list_cart').on('click', function () {
+        var cart = $('.foot_pic_now');
+        var imgtodrag = $(this).closest('li').find("img").eq(0);
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+                    .offset({
+                        top: imgtodrag.offset().top,
+                        left: imgtodrag.offset().left
+                    })
+                    .css({
+                        'opacity': '0.5',
+                        'position': 'absolute',
+                        'height': '150px',
+                        'width': '150px',
+                        'z-index': '100'
+                    })
+                    .appendTo($('body'))
+                    .animate({
+                        'top': cart.offset().top + 10,
+                        'left': cart.offset().left + 10,
+                        'width': 75,
+                        'height': 75
+                    }, 1000, 'easeInOutExpo');
+
+            imgclone.animate({
+                'width': 0,
+                'height': 0
+            }, function () {
+                $(this).detach();
+                var cartnum = cart.html()-0;
+                cartnum++;
+                cart.html(cartnum);
+            });
+        }
+    });
+</script>
 </html>

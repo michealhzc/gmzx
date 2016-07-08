@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html data-ng-app="App">
+<head>
+<meta charset="utf-8">
+<title>APP</title>
+<meta name="description" content="APP">
+<meta name="Keywords" content="APP">
+<meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport" />
+<link type="text/css" rel="stylesheet" href="../css/public.css" />
+<link type="text/css" rel="stylesheet" href="../css/member.css" />
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+<!--加载样式-->
+<script>
+	$(window).load(function() {
+		$("#status").fadeOut();
+		$("#preloader").delay(350).fadeOut("slow");
+	})
+</script>
+</head>
+<body>
+<div class="w">
+<!--页面加载 开始-->
+	<div id="preloader">
+		<div id="status">
+			<p class="center-text">加载中...</p>
+		</div>
+	</div>
+<!--页面加载 结束--> 
+<!--header 开始-->
+<header>
+	<div class="header">
+		<a class="new-a-back" href="javascript:history.back();"> <span>返回</span> </a>
+		<span class="tt">重置密码</span>
+	</div>
+</header>
+<!--header 结束-->
+<div class="page">
+	<div class="main">
+		<form id="frm_login" method="post" action="">
+			<div class="item item-phone">
+				<input id="phone" class="txt-input txt-phone" type="text" placeholder="请输入注册手机号" value="" name="phone">
+			</div>
+			<div class="item item-username">
+				<input id="username" class="txt-input txt-username" type="text" placeholder="手机号/邮箱/用户名" value="" name="username">
+				
+				<a href="">获取验证码</a>
+				
+			</div>
+			<div class="item item-password">
+				<input id="password" class="txt-input txt-password ciphertext" type="password" placeholder="请输入新密码" name="password" style="display: inline;">
+			</div>
+			<div class="ui-btn-wrap"> <a class="ui-btn-lg ui-btn-primary" href="#" name="submit" onclick="document.getElementById('frm_login').submit();return false">立即注册</a> </div>
+		</form>
+	</div>
+</div>
+</div>
+</body>
+</html>

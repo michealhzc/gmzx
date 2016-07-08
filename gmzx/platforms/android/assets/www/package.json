@@ -1,0 +1,16 @@
+{
+  "name": "gmzx",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cordova.js",
+  "dependencies": {
+    "angular": "^1.4.6",
+    "jquery": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shollin",
+  "license": "ISC"
+}

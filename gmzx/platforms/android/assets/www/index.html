@@ -3,42 +3,139 @@
     <head>
         <title>广美整形</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <script type="text/javascript" src="js/angular/angular.min.js" charset="utf-8"></script>
+        <!--       <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.7/angular.js" charset="utf-8"></script>
+               <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.7/angular-animate.js" charset="utf-8"></script>
+               <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.7/angular-cookies.js" charset="utf-8"></script>
+               <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.7/angular-loader.js" charset="utf-8"></script>
+               <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.7/angular-resource.js" charset="utf-8"></script>
+               <script type="text/javascript" src="//cdn.bootcss.com/angular.js/1.5.7/angular-route.js" charset="utf-8"></script>
+               <script type="text/javascript" src="//cdn.bootcss.com/angular-ui-router/0.3.1/angular-ui-router.js" charset="utf-8"></script>
+               <script src="//cdn.bootcss.com/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
+               <link href="//cdn.bootcss.com/angular-ui/0.4.0/angular-ui.css" rel="stylesheet">
+               <script src="//cdn.bootcss.com/angular-ui/0.4.0/angular-ui.js"></script>
+
+               <script src="//cdn.bootcss.com/ng-cordova/0.1.26-alpha/ng-cordova-mocks.js"></script>
+               <script src="//cdn.bootcss.com/ng-cordova/0.1.26-alpha/ng-cordova.js"></script> -->
+
+        <script type="text/javascript" src="bower_components/angular/angular.js" charset="utf-8"></script>
+        <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js" charset="utf-8"></script>
+        <script type="text/javascript" src="bower_components/ngCordova/dist/ng-cordova.js" charset="utf-8"></script>
+        <link href="./css/cmsindex.css" rel="stylesheet" media="screen" type="text/css" />
+        <script src="//cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="js/app.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/user.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/shop.js" charset="utf-8"></script>
+        <script type="text/javascript" src="js/cms.js" charset="utf-8"></script>
         <script>
-            var Gmzx = angular.module('gmzxApp',[]);
-            Gmzx.controller('index',['$scope','$http','$timeout',function($scope,$http,$timeout){
-                var timer = null;
-                $scope.data = [];
-                $scope.change = function(name){
-                    $timeout.cancel(timer);
-                    timer = $timeout(function(){
-                        $http({
-                            method : 'JSONP',
-                            url : 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd='+name+'&cb=JSON_CALLBACK'
-                        }).success(function(data){
-                            //console.log(data);
-                            $scope.data = data.s;
-                        });
-
-                    },500);
-
-                };
-
-
-
-
-
-            }]);
-
+        var elm = document.documentElement;
+        var fontSize = 100;
+        if (elm.clientWidth < 720 || elm.clientWidth == 720) {
+            elm.style.fontSize = fontSize * (elm.clientWidth / 320) + 'px';
+        } else {
+            elm.style.fontSize = fontSize * (720 / 320) + 'px';
+        }
         </script>
+
     </head>
-    <body ng-controller="index" >
-	<h1>广美整形!</h1>
-    <input type="text" ng-model="name" ng-keyup="change(name)">
-    <input type="button" ng-click="change(name)" value="搜索">
-    <ul>
-        <li ng-repeat="d in data">{{d}}</li>
-    </ul>
+    <body>
+        <div ui-view="header"></div>
+        <div ui-view="content"></div>
+        <div ui-view="footer"></div>
     </body>
+    <script>
+    /*头部下拉*/
+    var top_btn=$("#header span.right");
+    top_btn.on("click",function(e){
+        e.stopPropagation();
+        var val = $(this).attr('class');
+        if(val.indexOf('on') == -1){
+            $(this).addClass('on');
+            $(".menu").show(0).stop().animate({
+                height:'1.86rem'
+            },0);
+            $(".menu").attr('id',"topmenu");//加入id属性
+            top_btn.attr('id',"top_btn");//加入id属性
+        }else{
+            $(this).removeClass('on');
+            $(".menu").hide(0).stop().animate({
+                height:'0'
+            },0);
+        }
+    })
+    //点击按钮列表收缩
+    $('.menu a').on('click',function(e){
+        e.stopPropagation();
+        $(this).parents('.menu').hide();
+        $('#header span.right').removeClass('on');
+    })
+
+
+    $('#nav_menu_bnt').on('click',function(e){
+        e.stopPropagation(); //防止事件冒泡，触发body的click事件
+        $('#nav_menu').toggle();
+    })
+    /*脚部头部下拉*/
+
+    //触摸别的地方列表收缩
+    $('body').on('click touchmove',function(bnt) {
+        if(bnt.target.id != 'top_btn' && bnt.target.id != 'topmenu'){
+            top_btn.removeClass('on');
+            if ( $('#topmenu').is(':visible') ) $('#topmenu').hide();
+            bnt.stopPropagation();
+        }
+        if(bnt.target.id != 'nav_menu_bnt' && bnt.target.id != 'nav_menu'){
+            if ( $('#nav_menu').is(':visible') ) $('#nav_menu').hide();
+        }
+    })
+
+    var body_width = $('body').width();
+    if (body_width > 720) {
+        $('body').width(720).css('margin', '0 auto')
+    };
+
+
+    //加入购物车动画效果
+
+
+    $('.list_cart').on('click', function () {
+        var cart = $('.foot_pic_now');
+        var imgtodrag = $(this).closest('li').find("img").eq(0);
+        if (imgtodrag) {
+            var imgclone = imgtodrag.clone()
+                    .offset({
+                        top: imgtodrag.offset().top,
+                        left: imgtodrag.offset().left
+                    })
+                    .css({
+                        'opacity': '0.5',
+                        'position': 'absolute',
+                        'height': '150px',
+                        'width': '150px',
+                        'z-index': '100'
+                    })
+                    .appendTo($('body'))
+                    .animate({
+                        'top': cart.offset().top + 10,
+                        'left': cart.offset().left + 10,
+                        'width': 75,
+                        'height': 75
+                    }, 350 );
+
+            imgclone.animate({
+                'width': 0,
+                'height': 0
+            }, function () {
+                $(this).detach();
+                var cartnum = cart.html()-0;
+                cartnum++;
+                if(cartnum==0)cart.hide();
+                else {cart.show();
+                cart.html(cartnum);}
+            });
+        }
+    });
+</script>
+
 </html>

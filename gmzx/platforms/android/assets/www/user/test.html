@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>APP</title>
+<script type="text/javascript" src="../js/angular/angular.min.js"></script>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+</head>
+<body>
+<div class="header" ng-app="myApp">
+	<div class="tt" ng-controller="myCtrl">{{myValue.value1}}</div>
+	<div>
+		<div ng-bind="name"></div>
+		{{name}}
+	</div>	
+	<div ng-controller="array">
+			{{prsen[0].name}}
+		<li ng-repeat="arr in prsen">
+			姓名：{{prsen[0].name}};
+			年龄：{{arr.age}}
+		</li>
+	</div>
+</div>
+<!-- <div ng-app="myApp1">	
+	{{name}}
+</div>
+ -->
+<!-- <div ng-app="" ng-init="test2='aaaa'">
+
+{{test2}}<div ng-bind="test2"></div>
+</div>
+ -->
+<script type="text/javascript">  
+var app = angular.module('myApp', []);  
+app.value('myValue',{"value1":"hello","value2":"11111"});    
+app.controller('myCtrl', function($scope,myValue) {  
+       $scope.myValue = myValue;  
+});  
+
+app.controller('array' ,function($scope){
+	$scope.prsen = [
+		{name:'张三',age:'30'},
+		{name:'李四',age:'40'},
+		{name:'王五',age:'50'}
+	]
+});
+
+app.run(['$rootScope' ,function($rootScope){
+	$rootScope.name = 'who';
+}])
+console.log( test1 );
+
+</script>  
+
+</body>
+</html>

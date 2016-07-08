@@ -1,0 +1,39 @@
+/* 公用样式 */
+body,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,th,td,p,blockquote,pre,form,fieldset,legend,input,button,textarea,hr,a { margin:0 auto; padding:0; color:#333;}
+body{ font-size:14px; font-family: Arial,"微软雅黑",Tahoma,sans-serif; background:#EDEDED;-webkit-text-size-adjust: none;margin:0;padding:0;}
+ul,ol,li{list-style:none;}
+fieldset,img {border:0}
+.clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.clearfix { clear:both; display:block; overflow:hidden; }
+.top10{margin-top:10px;}
+.clear{ clear:both;}
+.bgfff{background:#ffffff;}
+a {text-decoration:none;color:#333;}
+a:hover {text-decoration:none;}
+.all{float:left;width:100%}
+.c999{ color:#999;}
+.cec9{color:#EC9F19}
+.fl{ float:left;}
+.fr{ float:right;}
+.colf60{color:#f60;}
+.col {color: #C258F8;}
+.pos_rel{ position:relative;}
+.pos_abs{ position:absolute;}
+em{ font-style:normal;}
+a,span,div,i,em { -webkit-tap-highlight-color:rgba(255,255,255,0);margin:0;padding:0;font-style:normal;}
+html,body{ width:100%; height:100%; }
+.clea{height:10px;background:#EDEDED;clear:both;}
+.clea20{height:20px;clear:both;visibility:hidden;}
+.height10{height:10px;clear:both;visibility:hidden;}
+.border_t{border-top: 1px solid #DBDBDB;}
+
+/*页面加载*/
+#preloader {position:fixed;z-index:2500;top:0;left:0;right:0;bottom:0;background-color:#fff; z-index:999999; }
+#status {position:fixed;z-index:999999;width:250px;height:250px;position:absolute;left:50%; top:50%; background-image:url(../images/status.gif); background-size:32px 32px;
+background-repeat:no-repeat;background-position:center;margin:-125px 0 0 -125px; }
+#status p{top:70%;}
+#status em{font-size:10px!important;display:block;font-style:normal;}
+.center-text{font-size:14px;	text-align:center;	}
+.shua a{font-size:16px;color:#93c;padding-top:20px;}
+
+
